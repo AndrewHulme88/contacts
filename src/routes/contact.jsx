@@ -7,15 +7,18 @@ export default function Contact() {
     avatar: "https://robohash.org/you.png?size=200x200",
     twitter: "your_handle",
     notes: "Some notes",
-    favourite: true,
+    favorite: true,
   };
 
   return (
     <div id="contact">
       <div>
-        <img src="contact.avatar ||
-            `https://robohash.org/${contact.id}.png?size=200x200`"
-            key={contact.avatar}
+        <img
+          key={contact.avatar}
+          src={
+            contact.avatar ||
+            `https://robohash.org/${contact.id}.png?size=200x200`
+          }
         />
       </div>
 
@@ -28,14 +31,16 @@ export default function Contact() {
           ) : (
             <i>No Name</i>
           )}{" "}
-          <Favourite contact={contact} />
+          <Favorite contact={contact} />
         </h1>
 
         {contact.twitter && (
           <p>
             <a
               target="_blank"
-              href={`https://twitter.com/${contact.twitter}`}>
+              href={`https://twitter.com/${contact.twitter}`}
+            >
+              {contact.twitter}
             </a>
           </p>
         )}
@@ -46,15 +51,18 @@ export default function Contact() {
           <Form action="edit">
             <button type="submit">Edit</button>
           </Form>
-          <Form method="post" action="destroy" onSubmit={(event) => {
-            if (
-              !confirm(
-                "Please confirm you want to delete this record."
-              )
-            ) {
-              event.preventDefault();
-            }
-          }}
+          <Form
+            method="post"
+            action="destroy"
+            onSubmit={(event) => {
+              if (
+                !confirm(
+                  "Please confirm you want to delete this record."
+                )
+              ) {
+                event.preventDefault();
+              }
+            }}
           >
             <button type="submit">Delete</button>
           </Form>
